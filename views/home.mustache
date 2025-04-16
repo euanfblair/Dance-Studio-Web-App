@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{#title}}{{title}}{{/title}}{{^title}}Dance Studio{{/title}}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  
+  <style>
+    .feature-card .card-title {
+      font-size: 1.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    .feature-card .card-body {
+      padding: 1.5rem;
+      background: white;
+    }
+  </style>
+</head>
+<body class="d-flex flex-column h-100">
+{{> header }}
+
+<main class="flex-shrink-0">
+  <div class="hero-section text-center">
+    <div class="container">
+      <h1 class="display-3 fw-bold mb-4">Dance Your Way to Excellence</h1>
+      <p class="lead mb-5 px-md-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim felis eget urna ultricies fermentum.</p>
+      <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+        <a href="/courses" class="btn btn-primary btn-lg px-4 me-sm-3">Explore Courses</a>
+        <a href="/about" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="mb-5">
+      <h2 class="fw-bold text-center mb-5">Upcoming Classes</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card upcoming-class-card">
+            <div class="card-header card-header-blue">Mon, Jun 10, 2025</div>
+            <div class="card-body">
+              <h5 class="card-title">Beginner Salsa</h5>
+              <p class="card-text mb-1"><i class="bi bi-clock me-2"></i> 18:00-19:30</p>
+              <p class="card-text mb-1"><i class="bi bi-geo-alt me-2"></i> Studio A</p>
+              <p class="card-text mb-3"><i class="bi bi-currency-dollar me-2"></i> £25.00</p>
+              <a href="/courses" class="btn btn-primary w-100">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card upcoming-class-card">
+            <div class="card-header card-header-blue">Tue, Jun 11, 2025</div>
+            <div class="card-body">
+              <h5 class="card-title">Intermediate Ballet</h5>
+              <p class="card-text mb-1"><i class="bi bi-clock me-2"></i> 17:00-18:30</p>
+              <p class="card-text mb-1"><i class="bi bi-geo-alt me-2"></i> Studio B</p>
+              <p class="card-text mb-3"><i class="bi bi-currency-dollar me-2"></i> £30.00</p>
+              <a href="/courses" class="btn btn-primary w-100">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card upcoming-class-card">
+            <div class="card-header card-header-blue">Wed, Jun 12, 2025</div>
+            <div class="card-body">
+              <h5 class="card-title">Hip Hop Fundamentals</h5>
+              <p class="card-text mb-1"><i class="bi bi-clock me-2"></i> 19:00-20:30</p>
+              <p class="card-text mb-1"><i class="bi bi-geo-alt me-2"></i> Studio C</p>
+              <p class="card-text mb-3"><i class="bi bi-currency-dollar me-2"></i> £28.00</p>
+              <a href="/courses" class="btn btn-primary w-100">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cta-section">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-4">Ready to Start Your Dance Journey?</h2>
+      <p class="lead mb-5">Join our community of dancers and express yourself through movement</p>
+      <a href="/courses" class="btn btn-primary btn-lg px-5 py-3">Book Your First Class Today</a>
+    </div>
+  </div>
+</main>
+
+{{> footer }}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

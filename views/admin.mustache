@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{#title}}{{title}}{{/title}}{{^title}}Admin Dashboard - Dance Studio{{/title}}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="d-flex flex-column h-100">
+{{> admin-header }}
+
+<main class="container my-4 flex-shrink-0">
+  <div class="mb-4">
+    <h1 class="fw-bold mb-3">Welcome to Admin Dashboard</h1>
+    <p class="lead text-muted">Manage your dance studio's courses, classes, and more</p>
+  </div>
+  
+  {{#flash.success}}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{.}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/flash.success}}
+  
+  {{#flash.error}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{.}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/flash.error}}
+  
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="stats-box">
+        <div class="mb-2">
+          <i class="bi bi-book text-primary fs-1"></i>
+        </div>
+        <div class="stats-number">{{stats.courseCount}}</div>
+        <div class="text-muted">Total Courses</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="stats-box">
+        <div class="mb-2">
+          <i class="bi bi-calendar-week text-success fs-1"></i>
+        </div>
+        <div class="stats-number">{{stats.classCount}}</div>
+        <div class="text-muted">Total Classes</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="stats-box">
+        <div class="mb-2">
+          <i class="bi bi-people text-info fs-1"></i>
+        </div>
+        <div class="stats-number">{{stats.bookingCount}}</div>
+        <div class="text-muted">Active Bookings</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="stats-box">
+        <div class="mb-2">
+          <i class="bi bi-person-badge text-warning fs-1"></i>
+        </div>
+        <div class="stats-number">{{stats.adminCount}}</div>
+        <div class="text-muted">Admin Users</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row g-4 mb-5">
+    <div class="col-md-6 col-lg-3">
+      <div class="card dashboard-card text-white bg-gradient-primary">
+        <div class="card-body p-4 text-center">
+          <i class="bi bi-calendar-plus card-icon"></i>
+          <h3 class="h5 fw-bold mb-3">Manage Courses</h3>
+          <p class="card-text mb-4">Create, edit, and remove dance courses.</p>
+          <a href="/admin/courses" class="btn btn-light">Go to Courses</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card dashboard-card text-white bg-gradient-success">
+        <div class="card-body p-4 text-center">
+          <i class="bi bi-person-plus card-icon"></i>
+          <h3 class="h5 fw-bold mb-3">Create Admin</h3>
+          <p class="card-text mb-4">Add new administrators to the system.</p>
+          <a href="/admin/new" class="btn btn-light">Add Admin</a>
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-lg-8 mb-4">
+      <h2 class="h4 fw-bold mb-3">Recent Activity</h2>
+      <div class="card recent-activity">
+        <div class="card-header bg-white">
+          <strong>Latest System Events</strong>
+        </div>
+        <div class="card-body p-0">
+          {{#hasRecentClasses}}
+            {{#recentClasses}}
+            <div class="activity-item">
+              <div class="activity-icon bg-warning">
+                <i class="bi bi-calendar-check"></i>
+              </div>
+              <div>
+                <div class="fw-bold">Class Available</div>
+                <div class="text-muted">{{courseName}} - {{time}}</div>
+                <small class="text-muted">
+                  {{#bookings.length}}
+                    {{bookings.length}} student(s) enrolled
+                  {{/bookings.length}}
+                  {{^bookings.length}}
+                    No students enrolled yet
+                  {{/bookings.length}}
+                </small>
+              </div>
+            </div>
+            {{/recentClasses}}
+          {{/hasRecentClasses}}
+          
+          {{^hasRecentClasses}}
+          <div class="activity-item">
+            <div class="activity-icon bg-info">
+              <i class="bi bi-info-circle"></i>
+            </div>
+            <div>
+              <div class="fw-bold">No Recent Activity</div>
+              <div class="text-muted">Start creating courses and classes to see activity here</div>
+            </div>
+          </div>
+          {{/hasRecentClasses}}
+          
+          <div class="activity-item">
+            <div class="activity-icon bg-success">
+              <i class="bi bi-person-check"></i>
+            </div>
+            <div>
+              <div class="fw-bold">Admin Access</div>
+              <div class="text-muted">You are logged in as an administrator</div>
+              <small class="text-muted">Active now</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4 mb-4">
+      <h2 class="h4 fw-bold mb-3">Quick Actions</h2>
+      <div class="card">
+        <div class="card-header bg-white">
+          <strong>Common Tasks</strong>
+        </div>
+        <div class="card-body quick-actions">
+          <a href="/admin/courses" class="btn btn-outline-primary w-100">
+            <i class="bi bi-plus-circle me-2"></i> Create New Course
+          </a>
+          <a href="/admin/new" class="btn btn-outline-success w-100">
+            <i class="bi bi-person-plus me-2"></i> Add New Admin
+          </a>
+          
+          {{#courses.length}}
+          <div class="dropdown mt-3">
+            <button class="btn btn-outline-info w-100 dropdown-toggle" type="button" id="manageCourseDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-pencil-square me-2"></i> Manage Course Classes
+            </button>
+            <ul class="dropdown-menu w-100" aria-labelledby="manageCourseDropdown">
+              {{#courses}}
+              <li><a class="dropdown-item" href="/admin/courses/{{_id}}/classes">{{name}}</a></li>
+              {{/courses}}
+            </ul>
+          </div>
+          {{/courses.length}}
+          
+          {{^courses.length}}
+          <div class="alert alert-info mt-3 mb-0">
+            <small>Create your first course to start adding classes</small>
+          </div>
+          {{/courses.length}}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{{> footer }}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

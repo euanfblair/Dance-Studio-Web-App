@@ -1,0 +1,30 @@
+{
+  "name": "dance-class-booking",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["dance", "booking", "classes", "web application", "express"],
+  "author": "",
+  "license": "ISC",
+  "description": "A web application for managing dance classes and bookings",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "gray-nedb": "^1.8.3",
+    "jsonwebtoken": "^9.0.2",
+    "mustache-express": "^1.3.2",
+    "path": "^0.12.7",
+    "sessions": "^0.0.2-7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

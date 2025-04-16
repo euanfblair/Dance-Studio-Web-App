@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{#title}}{{title}}{{/title}}{{^title}}Dance Studio{{/title}}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-top: 70px;
+      padding-bottom: 60px;
+    }
+    
+    main {
+      flex: 1 0 auto;
+    }
+  </style>
+</head>
+<body class="d-flex flex-column h-100">
+{{> admin-header }}
+
+<main class="flex-shrink-0 container mt-4">
+  <div class="row mb-4">
+    <div class="col">
+      <h1>Manage Administrators</h1>
+      <p class="lead">View, add, and remove administrator accounts</p>
+    </div>
+    <div class="col-auto">
+      <a href="/admin/new" class="btn btn-primary"><i class="bi bi-person-plus"></i> Add New Admin</a>
+    </div>
+  </div>
+
+  <!-- Flash messages -->
+  {{#flash}}
+    {{#success}}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{.}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {{/success}}
+    {{#error}}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{.}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {{/error}}
+  {{/flash}}
+
+  <div class="card">
+    <div class="card-header bg-light">
+      <h5 class="card-title mb-0">Administrator Accounts</h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#admins}}
+            <tr>
+              <td>{{username}}</td>
+              <td>{{#createdAt}}{{createdAt}}{{/createdAt}}{{^createdAt}}Unknown{{/createdAt}}</td>
+              <td>
+                <form action="/admin/users/{{_id}}/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this administrator?');" class="d-inline">
+                  <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Delete</button>
+                </form>
+              </td>
+            </tr>
+            {{/admins}}
+            {{^admins}}
+            <tr>
+              <td colspan="3" class="text-center py-3">No administrators found</td>
+            </tr>
+            {{/admins}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+{{> footer }}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
