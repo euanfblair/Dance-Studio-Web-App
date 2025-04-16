@@ -1,5 +1,8 @@
 {
   "name": "dance-class-booking",
+	"engines": {
+		"node": "22.x"
+	},
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
