@@ -180,28 +180,26 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Get all edit buttons
+
     const editButtons = document.querySelectorAll('.edit-course');
     
-    // Add click event listener to each edit button
+
     editButtons.forEach(button => {
       button.addEventListener('click', function() {
         const courseId = this.getAttribute('data-id');
         const courseName = this.getAttribute('data-name');
         const courseDuration = this.getAttribute('data-duration');
         
-        // Populate the modal form with course data (directly from data attributes)
+
         document.getElementById('courseId').value = courseId;
         document.getElementById('courseName').value = courseName;
         document.getElementById('courseDuration').value = courseDuration;
         
-        // As a fallback, if data attributes don't have complete information,
-        // fetch course data from the server
+
         if (!courseName || !courseDuration) {
           fetch(`/api/courses/${courseId}`)
             .then(response => response.json())
             .then(course => {
-              // Populate the modal form with course data
               document.getElementById('courseId').value = course._id;
               document.getElementById('courseName').value = course.name;
               document.getElementById('courseDuration').value = course.duration;

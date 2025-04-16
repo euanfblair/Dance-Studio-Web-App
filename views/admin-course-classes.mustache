@@ -107,7 +107,7 @@
     </div>
   </div>
   
-  <!-- Flash messages -->
+
   {{#flash.success}}
   <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{.}}
@@ -318,7 +318,6 @@
               </tr>
             </thead>
             <tbody id="bookingsTableBody">
-              <!-- Bookings will be populated here by JavaScript -->
             </tbody>
           </table>
         </div>
@@ -335,7 +334,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Edit class button functionality
+
     const editButtons = document.querySelectorAll('.edit-class');
     
     editButtons.forEach(button => {
@@ -348,7 +347,7 @@
         const price = this.getAttribute('data-price');
         const capacity = this.getAttribute('data-capacity');
         
-        // Populate the modal form
+
         document.getElementById('classId').value = classId;
         document.getElementById('classDate').value = date;
         document.getElementById('classTime').value = time;
@@ -359,7 +358,7 @@
       });
     });
     
-    // View bookings button functionality
+
     const viewBookingsButtons = document.querySelectorAll('.view-bookings');
     
     viewBookingsButtons.forEach(button => {
@@ -368,11 +367,11 @@
         const date = this.getAttribute('data-date');
         const time = this.getAttribute('data-time');
         
-        // Update modal title and info
+
         document.getElementById('bookingsClassDate').textContent = date;
         document.getElementById('bookingsClassTime').textContent = `Time: ${time}`;
         
-        // Fetch bookings for this class
+
         fetch(`/api/classes/${classId}/bookings`)
           .then(response => response.json())
           .then(data => {
@@ -381,14 +380,14 @@
             const bookingsTableBody = document.getElementById('bookingsTableBody');
             
             if (data.bookings && data.bookings.length > 0) {
-              // Show bookings table, hide no bookings message
+
               bookingsList.classList.remove('d-none');
               noBookings.classList.add('d-none');
               
-              // Clear existing bookings
+
               bookingsTableBody.innerHTML = '';
               
-              // Add each booking to the table
+
               data.bookings.forEach(booking => {
                 const bookingDate = new Date(booking.bookingDate);
                 const formattedDate = bookingDate.toLocaleDateString() + ' ' + 
@@ -415,7 +414,7 @@
                 bookingsTableBody.appendChild(row);
               });
             } else {
-              // Show no bookings message, hide bookings table
+
               bookingsList.classList.add('d-none');
               noBookings.classList.remove('d-none');
             }

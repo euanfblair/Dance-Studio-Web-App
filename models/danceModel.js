@@ -390,7 +390,7 @@ class DanceModel {
                   { multi: true },
                   (updateErr, classesUpdated) => {
                     if (updateErr) {
-                      // Error handled through Promise
+
                     } else {
                       console.log(`Updated courseName in ${classesUpdated} classes`);
                     }
@@ -398,7 +398,6 @@ class DanceModel {
                 );
               })
               .catch((courseErr) => {
-                // Error handled through Promise
               });
           }
 

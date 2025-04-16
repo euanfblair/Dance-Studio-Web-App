@@ -24,7 +24,6 @@ const courses = async (req, res) => {
       courses,
     });
   } catch (error) {
-    // Error will be shown to user through the error page
     res.status(500).render('error', {
       message: 'Failed to load courses. Please try again later.',
     });
@@ -65,7 +64,7 @@ const courseDetails = async (req, res) => {
       totalPrice: totalPrice.toFixed(2)
     });
   } catch (error) {
-    // Error will be shown to user through the error page
+
     res.status(500).render('error', {
       message: 'Failed to load course details. Please try again later.',
     });
@@ -108,7 +107,7 @@ const bookClass = async (req, res) => {
 
     return res.redirect(`/courses/${courseId}`);
   } catch (error) {
-    // Error will be shown to user through flash message
+
 
     if (req.flash) {
       req.flash(
@@ -167,7 +166,7 @@ const bookCourse = async (req, res) => {
 
     return res.redirect(`/courses/${courseId}`);
   } catch (error) {
-    // Error will be shown to user through flash message
+
 
     if (req.flash) {
       req.flash(
@@ -313,7 +312,6 @@ const edit_courses = async (req, res) => {
       courses,
     });
   } catch (error) {
-    // Error will be shown to user through the error page
     res.status(500).render('error', {
       message: 'Failed to load courses. Please try again later.',
     });
